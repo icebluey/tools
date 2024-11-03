@@ -88,7 +88,7 @@ cat << EOF > etc/hysteria/hysteria.logrotate
 /var/log/hysteria.log {
     create 0644 syslog adm
     daily
-    rotate 10
+    rotate 1
     missingok
     notifempty
     compress
