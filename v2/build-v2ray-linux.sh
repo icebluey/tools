@@ -29,6 +29,9 @@ _install_go () {
     rm -fr "${_tmp_dir}"
 }
 set -e
+rm -fr /tmp/v2ray
+rm -fr /tmp/v2ray*.tar*
+
 _install_go
 # Go programming language
 export GOROOT='/usr/local/go'
@@ -46,6 +49,12 @@ _tmp_dir="$(mktemp -d)"
 cd "${_tmp_dir}"
 git clone --recursive 'https://github.com/v2fly/v2ray-core.git' v2ray-core
 sleep 1
+cp -afr v2ray-core "v2ray-core-$(date -u +%Y%m%d)-src"
+tar -zcf "v2ray-core-$(date -u +%Y%m%d)-src".tar.gz "v2ray-core-$(date -u +%Y%m%d)-src"
+sleep 1
+mv -f "v2ray-core-$(date -u +%Y%m%d)-src".tar.gz /tmp/
+rm -fr "v2ray-core-$(date -u +%Y%m%d)-src"
+
 cd v2ray-core
 rm -fr .git 
 ###############################################################################
@@ -57,14 +66,11 @@ head -n 40 core.go
 echo
 
 rm -fr /tmp/v2ray
-rm -fr /tmp/v2ray*tar.*
 install -m 0755 -d /tmp/v2ray/etc/v2ray
 install -m 0755 -d /tmp/v2ray/usr/bin
 
 cd main
 CGO_ENABLED=0 go build -o /tmp/v2ray/usr/bin/v2ray -ldflags "-s -w" -trimpath
-
-
 
 cd /tmp/v2ray
 ###############################################################################
