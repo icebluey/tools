@@ -160,6 +160,25 @@ masquerade:
   forceHTTPS: true
 EOF
 ###############################################################################
+echo '
+# install iptables iptables-persistent
+# iptables
+iptables -t nat -A PREROUTING -i eth0 -p udp --dport 20000:50000 -j REDIRECT --to-ports 443
+ip6tables -t nat -A PREROUTING -i eth0 -p udp --dport 20000:50000 -j REDIRECT --to-ports 443
+
+# install nftables
+# nftables
+define INGRESS_INTERFACE="eth0"
+define PORT_RANGE=20000-50000
+define HYSTERIA_SERVER_PORT=443
+table inet hysteria_porthopping {
+  chain prerouting {
+    type nat hook prerouting priority dstnat; policy accept;
+    iifname $INGRESS_INTERFACE udp dport $PORT_RANGE counter redirect to :$HYSTERIA_SERVER_PORT
+  }
+}
+' > etc/hysteria/porthopping.txt
+###############################################################################
 
 echo
 sleep 2
