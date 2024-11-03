@@ -17,7 +17,7 @@ docker exec ub2204 apt install -y bash vim wget ca-certificates curl
 docker exec ub2204 /bin/ln -svf bash /bin/sh
 docker exec ub2204 /bin/bash -c '/bin/rm -fr /tmp/*'
 docker cp .preinstall_ub2204 ub2204:/home/
-docker exec ub2204 /bin/bash ub2204:/home/.preinstall_ub2204
+docker exec ub2204 /bin/bash /home/.preinstall_ub2204
 
 docker cp hy ub2204:/home/
 docker exec ub2204 /bin/bash /home/hy/build.sh
