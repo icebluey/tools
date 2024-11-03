@@ -55,12 +55,6 @@ apt autoremove --purge -y lxd-agent-loader snapd
 /bin/rm -fr /tmp/snap-private-tmp
 /bin/rm -fr /usr/lib/snapd
 
-# delete firefox
-apt autoremove --purge -y --allow-remove-essential $(dpkg -l | grep -i -E 'firefox|firebird|google-chrome-stable' | awk '{print $2}' | sort -V | uniq | paste -sd" ")
-
-# delete microsoft
-apt autoremove --purge -y --allow-remove-essential $(dpkg -l | grep -i -E 'dotnet|microsoft|libmono|mono-|monodoc|powershell' | grep -iv shim-signed | awk '{print $2}' | sort -V | uniq | paste -sd" ")
-
 # delete docker
 /bin/systemctl disable $(/bin/systemctl list-unit-files | grep -i -E 'docker|container|podman' | grep -iv 'container-getty' | awk '{print $1}' | sort -V | uniq | paste -sd" ")
 /bin/systemctl stop $(/bin/systemctl list-unit-files | grep -i -E 'docker|container|podman' | grep -iv 'container-getty' | awk '{print $1}' | sort -V | uniq | paste -sd" ")
@@ -68,6 +62,28 @@ apt autoremove --purge -y --allow-remove-essential $(dpkg -l | grep -i -E 'docke
 apt autoremove --purge -y crun
 apt autoremove --purge -y runc
 /bin/rm -fr /etc/docker /usr/libexec/docker /etc/containerd /var/lib/containerd /var/lib/docker*
+
+/bin/systemctl stop systemd-resolved.service
+/bin/systemctl stop systemd-timesyncd
+/bin/systemctl stop unattended-upgrades
+/bin/systemctl stop udisks2.service
+/bin/systemctl disable systemd-resolved.service
+/bin/systemctl disable systemd-timesyncd
+/bin/systemctl disable unattended-upgrades
+/bin/systemctl disable udisks2.service
+/bin/rm -fr /etc/resolv.conf
+echo "nameserver 8.8.8.8" >/etc/resolv.conf
+
+df -Th
+exit
+
+
+# delete firefox
+#apt autoremove --purge -y --allow-remove-essential $(dpkg -l | grep -i -E 'firefox|firebird|google-chrome-stable' | awk '{print $2}' | sort -V | uniq | paste -sd" ")
+#rm -fr /etc/apt/preferences.d/firefox*
+
+# delete microsoft
+#apt autoremove --purge -y --allow-remove-essential $(dpkg -l | grep -i -E 'dotnet|microsoft|libmono|mono-|monodoc|powershell' | grep -iv shim-signed | awk '{print $2}' | sort -V | uniq | paste -sd" ")
 
 # delete mysql postgresql php google-cloud
 /bin/systemctl disable postgresql.service
@@ -105,7 +121,6 @@ apt autoremove --purge -y --allow-remove-essential $(dpkg -l | awk '$2 ~ /mysql|
 /bin/rm -fr /usr/local/.ghcup
 /bin/rm -fr /opt/hostedtoolcache
 
-rm -fr /etc/apt/preferences.d/firefox*
 /bin/systemctl stop systemd-resolved.service
 /bin/systemctl stop systemd-timesyncd
 /bin/systemctl stop unattended-upgrades
