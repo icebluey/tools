@@ -8,6 +8,8 @@ ln -svf ../usr/share/zoneinfo/UTC /etc/localtime
 DEBIAN_FRONTEND=noninteractive sudo apt-get install -y tzdata
 dpkg-reconfigure --frontend noninteractive tzdata
 
+apt autoremove --purge -y firefox "dotnet-*"
+
 # delete snap
 snap remove --purge lxd
 snap remove --purge amazon-ssm-agent
