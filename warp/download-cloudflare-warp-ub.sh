@@ -30,5 +30,11 @@ wget -c -t 9 -T 9 "https://pkg.cloudflareclient.com/${cloudflare_warp_filepath}"
 echo "Completed"
 exit
 
-# https://pkg.cloudflareclient.com/rpm/x86_64/cloudflare-warp-2024.6.497-1.x86_64.rpm
+https://pkg.cloudflareclient.com/pool/focal/main/c/cloudflare-warp/cloudflare-warp_2024.6.497-1_amd64.deb
+https://pkg.cloudflareclient.com/pool/focal/main/c/cloudflare-warp/cloudflare-warp_2024.11.150.0_amd64.deb
+
+https://pkg.cloudflareclient.com/pool/jammy/main/c/cloudflare-warp/cloudflare-warp_2024.6.497-1_amd64.deb
+https://pkg.cloudflareclient.com/pool/jammy/main/c/cloudflare-warp/cloudflare-warp_2024.11.150.0_amd64.deb
+
+https://pkg.cloudflareclient.com/rpm/x86_64/cloudflare-warp-2024.6.497-1.x86_64.rpm
 
