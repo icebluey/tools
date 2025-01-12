@@ -163,17 +163,23 @@ EOF
 echo '
 # install iptables iptables-persistent
 # iptables
-iptables -t nat -A PREROUTING -i eth0 -p udp --dport 20000:50000 -j REDIRECT --to-ports 443
-ip6tables -t nat -A PREROUTING -i eth0 -p udp --dport 20000:50000 -j REDIRECT --to-ports 443
+iptables -t nat -A PREROUTING -i eth0 -p udp --dport 40000:60000 -j REDIRECT --to-ports 443
+ip6tables -t nat -A PREROUTING -i eth0 -p udp --dport 40000:60000 -j REDIRECT --to-ports 443
+iptables -t nat -nvL
+ip6tables -t nat -nvL
 
-# install nftables
-# Add 
+# ubuntu 22.04
+iptables-save > /etc/iptables/rules.v4
+ip6tables-save > /etc/iptables/rules.v6
+
+# install nftables , el9
+# Add
 # include "/etc/nftables/hysteria.nft"
-# to /etc/sysconfig/nftables.conf
-# 
+# to the end of /etc/sysconfig/nftables.conf
+
 # Save below to /etc/nftables/hysteria.nft and systemctl start nftables.service
 define INGRESS_INTERFACE="eth0"
-define PORT_RANGE=20000-50000
+define PORT_RANGE=40000-60000
 define HYSTERIA_SERVER_PORT=443
 table inet hysteria_porthopping {
   chain prerouting {
