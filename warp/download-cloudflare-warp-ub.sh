@@ -37,6 +37,12 @@ https://pkg.cloudflareclient.com/pool/jammy/main/c/cloudflare-warp/cloudflare-wa
 https://pkg.cloudflareclient.com/pool/jammy/main/c/cloudflare-warp/cloudflare-warp_2024.11.150.0_amd64.deb
 
 el8/9
-https://pkg.cloudflareclient.com/rpm/x86_64/cloudflare-warp-2024.6.497-1.x86_64.rpm
-https://pkg.cloudflareclient.com/rpm/x86_64/cloudflare-warp-2024.11.309.0.x86_64.rpm
 https://pkg.cloudflareclient.com/rpm/aarch64/cloudflare-warp-2024.11.309.0.aarch64.rpm
+
+https://pkg.cloudflareclient.com/rpm/x86_64/cloudflare-warp-2024.6.497-1.x86_64.rpm
+
+https://pkg.cloudflareclient.com/rpm/x86_64/cloudflare-warp-2024.11.150.0.x86_64.rpm
+https://pkg.cloudflareclient.com/rpm/x86_64/cloudflare-warp-2024.11.309.0.x86_64.rpm
+https://pkg.cloudflareclient.com/rpm/x86_64/cloudflare-warp-2024.12.554.0.x86_64.rpm
+
+
