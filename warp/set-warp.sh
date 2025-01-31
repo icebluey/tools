@@ -6,3 +6,5 @@ sleep 2
 /usr/bin/warp-cli --accept-tos status
 /usr/bin/warp-cli --accept-tos settings
 
+#warp-cli --accept-tos tunnel protocol set MASQUE
+#warp-cli --accept-tos tunnel protocol set WireGuard
