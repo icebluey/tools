@@ -24,6 +24,7 @@ touch /var/log/warp-svc/warp_svc.log
 chown syslog:adm /var/log/warp-svc/warp_svc.log
 chmod 0644 /var/log/warp-svc/warp_svc.log
 
+rm -f /var/log/warp-svc/cfwarp_*
 rm -fr /var/log/cloudflare-warp
 systemctl start warp-svc.service
 sleep 2
