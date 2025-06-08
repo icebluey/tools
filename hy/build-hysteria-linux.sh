@@ -157,8 +157,8 @@ EOF
 echo '
 # install iptables iptables-persistent
 # iptables
-iptables -t nat -A PREROUTING -i eth0 -p udp --dport 40000:60000 -j REDIRECT --to-ports 443
-ip6tables -t nat -A PREROUTING -i eth0 -p udp --dport 40000:60000 -j REDIRECT --to-ports 443
+iptables -t nat -A PREROUTING -i eth0 -p udp --dport 25000:65000 -j REDIRECT --to-ports 443
+ip6tables -t nat -A PREROUTING -i eth0 -p udp --dport 25000:65000 -j REDIRECT --to-ports 443
 iptables -t nat -nvL
 ip6tables -t nat -nvL
 
@@ -166,14 +166,11 @@ ip6tables -t nat -nvL
 iptables-save > /etc/iptables/rules.v4
 ip6tables-save > /etc/iptables/rules.v6
 
-# install nftables , el9
-# Add
-# include "/etc/nftables/hysteria.nft"
-# to the end of /etc/sysconfig/nftables.conf
 
-# Save below to /etc/nftables/hysteria.nft and systemctl start nftables.service
+# install nftables , el9
+1. Save below to /etc/nftables/hysteria.nft
 define INGRESS_INTERFACE="eth0"
-define PORT_RANGE=40000-60000
+define PORT_RANGE=25000-65000
 define HYSTERIA_SERVER_PORT=443
 table inet hysteria_porthopping {
   chain prerouting {
@@ -181,6 +178,15 @@ table inet hysteria_porthopping {
     iifname $INGRESS_INTERFACE udp dport $PORT_RANGE counter redirect to :$HYSTERIA_SERVER_PORT
   }
 }
+
+2. Add
+include "/etc/nftables/hysteria.nft"
+to the end of /etc/sysconfig/nftables.conf
+
+3.
+firewall-cmd --permanent --zone=public --add-port=25000-65000/udp
+systemctl start nftables.service
+firewall-cmd --reload
 ' > etc/hysteria/porthopping.txt
 ###############################################################################
 
