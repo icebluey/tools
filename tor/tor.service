@@ -1,0 +1,17 @@
+[Unit]
+Description=Tor Service
+After=network.target
+Wants=network.target
+
+[Service]
+# Tor, short for The Onion Router, is a free, open-source software and network
+# designed to enable anonymous communication and browsing on the internet.
+# https://www.torproject.org/
+Type=simple
+PIDFile=/run/tor.pid
+ExecStart=/opt/tor-bundle/tor.sh
+Restart=on-failure
+RestartPreventExitStatus=23
+
+[Install]
+WantedBy=multi-user.target
