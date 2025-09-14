@@ -64,7 +64,7 @@ install -m 0755 -d /tmp/v2ray/etc/v2ray
 install -m 0755 -d /tmp/v2ray/usr/bin
 
 cd main
-CGO_ENABLED=0 go build -o /tmp/v2ray/usr/bin/v2ray -ldflags "-s -w" -trimpath
+CGO_ENABLED=0 GOARCH=amd64 GOAMD64=v3 go build -trimpath -ldflags "-s -w" -o /tmp/v2ray/usr/bin/v2ray
 
 cd /tmp/v2ray
 ###############################################################################
