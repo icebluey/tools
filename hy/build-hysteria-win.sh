@@ -23,22 +23,19 @@ _install_7z() {
     rm -fr "${_tmp_dir}"
 }
 
-_install_go() {
+_install_go () {
     set -e
     _tmp_dir="$(mktemp -d)"
     cd "${_tmp_dir}"
     # Latest version of go
     #_go_version="$(wget -qO- 'https://golang.org/dl/' | grep -i 'linux-amd64\.tar\.' | sed 's/"/\n/g' | grep -i 'linux-amd64\.tar\.' | cut -d/ -f3 | grep -i '\.gz$' | sed 's/go//g; s/.linux-amd64.tar.gz//g' | grep -ivE 'alpha|beta|rc' | sort -V | uniq | tail -n 1)"
 
-    # go1.24.X
-    _go_version="$(wget -qO- 'https://golang.org/dl/' | grep -i 'linux-amd64\.tar\.' | sed 's/"/\n/g' | grep -i 'linux-amd64\.tar\.' | cut -d/ -f3 | grep -i '\.gz$' | sed 's/go//g; s/.linux-amd64.tar.gz//g' | grep -ivE 'alpha|beta|rc' | sort -V | uniq | grep '^1\.24\.' | tail -n 1)"
-
+    # go1.25.X
+    _go_version="$(wget -qO- 'https://golang.org/dl/' | grep -i 'linux-amd64\.tar\.' | sed 's/"/\n/g' | grep -i 'linux-amd64\.tar\.' | cut -d/ -f3 | grep -i '\.gz$' | sed 's/go//g; s/.linux-amd64.tar.gz//g' | grep -ivE 'alpha|beta|rc' | sort -V | uniq | grep '^1\.25\.' | tail -n 1)"
     wget -q -c -t 0 -T 9 "https://dl.google.com/go/go${_go_version}.linux-amd64.tar.gz"
     rm -fr /usr/local/go
-    sleep 1
     install -m 0755 -d /usr/local/go
     tar -xof "go${_go_version}.linux-amd64.tar.gz" --strip-components=1 -C /usr/local/go/
-    sleep 1
     cd /tmp
     rm -fr "${_tmp_dir}"
 }
@@ -63,6 +60,11 @@ cd "${_tmp_dir}"
 tar -xof /tmp/hysteria*src.tar.gz
 
 cd hysteria*
+for dir in core app extras; do
+    cd $dir
+    go mod tidy || true
+    cd ..
+done
 export HY_APP_PLATFORMS="windows/amd64-avx"
 python3 hyperbole.py build -r
 /bin/ls -l build/hysteria-windows-amd64-avx.exe
