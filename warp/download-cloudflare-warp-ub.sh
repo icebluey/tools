@@ -47,3 +47,9 @@ https://pkg.cloudflareclient.com/rpm/x86_64/cloudflare-warp-2024.6.497-1.x86_64.
 
 https://pkg.cloudflareclient.com/rpm/aarch64/cloudflare-warp-2024.11.309.0.aarch64.rpm
 
+
+wget -c "https://pkg.cloudflareclient.com/pool/focal/main/c/cloudflare-warp/cloudflare-warp_2025.6.1335.0_amd64.deb"
+wget -c "https://pkg.cloudflareclient.com/pool/jammy/main/c/cloudflare-warp/cloudflare-warp_2025.6.1335.0_amd64.deb"
+wget -c "https://pkg.cloudflareclient.com/pool/noble/main/c/cloudflare-warp/cloudflare-warp_2025.6.1335.0_amd64.deb"
+wget -c "https://pkg.cloudflareclient.com/rpm/x86_64/cloudflare-warp-2025.6.1335.0.x86_64.rpm"
+
