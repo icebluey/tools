@@ -6,6 +6,11 @@ sleep 1
 dpkg -i "${1}"
 
 systemctl stop warp-svc.service
+systemctl disable warp-svc.service
+
+rm -f /var/lib/cloudflare-warp/cfwarp_snapshots_collection.txt
+rm -fr /var/lib/cloudflare-warp/crash_reports
+rm -fr /var/lib/cloudflare-warp/snapshots
 
 getent group cfwarp > /dev/null || groupadd -r cfwarp
 getent passwd cfwarp > /dev/null || useradd -r -d /var/lib/cloudflare-warp -g cfwarp -s /usr/sbin/nologin -c "Cloudflare Warp" cfwarp
