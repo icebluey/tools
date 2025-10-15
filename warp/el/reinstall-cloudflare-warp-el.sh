@@ -7,7 +7,6 @@ dnf install -y "${1}"
 
 sleep 1
 systemctl stop warp-svc.service
-sleep 1
 systemctl disable warp-svc.service
 
 rm -f /var/lib/cloudflare-warp/cfwarp_snapshots_collection.txt
