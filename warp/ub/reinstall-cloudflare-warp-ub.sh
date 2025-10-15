@@ -5,6 +5,7 @@ sleep 1
 
 dpkg -i "${1}"
 
+sleep 1
 systemctl stop warp-svc.service
 systemctl disable warp-svc.service
 
