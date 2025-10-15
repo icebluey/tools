@@ -10,6 +10,10 @@ systemctl stop warp-svc.service
 sleep 1
 systemctl disable warp-svc.service
 
+rm -f /var/lib/cloudflare-warp/cfwarp_snapshots_collection.txt
+rm -fr /var/lib/cloudflare-warp/crash_reports
+rm -fr /var/lib/cloudflare-warp/snapshots
+
 if [ -f /etc/systemd/system/warp-svc.service ]; then
   rm -vf /lib/systemd/system/warp-svc.service
   cp -vf /etc/systemd/system/warp-svc.service /lib/systemd/system/warp-svc.service
