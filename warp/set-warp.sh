@@ -4,7 +4,7 @@
 /usr/bin/warp-cli --accept-tos tunnel masque-options set h3-only
 /usr/bin/warp-cli --accept-tos mode proxy
 /usr/bin/warp-cli --accept-tos connect
-sleep 2
+sleep 5
 /usr/bin/warp-cli --accept-tos status
 /usr/bin/warp-cli --accept-tos settings
 
