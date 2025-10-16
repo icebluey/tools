@@ -17,3 +17,8 @@ curl -x "socks5://127.0.0.1:10005" https://1.1.1.1/cdn-cgi/trace
 curl -x "socks5://127.0.0.1:1080" https://1.1.1.1/cdn-cgi/trace
 ```
 
+
+```
+Notice: The Cloudflare WARP APT repository public key may require updating. Please run:
+  curl -fsSL https://pkg.cloudflareclient.com/pubkey.gpg | sudo gpg --yes --dearmor --output "/usr/share/keyrings/cloudflare-warp-archive-keyring.gpg"
+```
