@@ -1,5 +1,5 @@
 /var/log/warp-svc/*log {
-    create 0644 syslog adm
+    create 0640 syslog adm
     daily
     rotate 1
     missingok
