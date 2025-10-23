@@ -91,7 +91,7 @@ chmod 0644 etc/v2ray/v2ray.service
 ###############################################################################
 cat << EOF > etc/v2ray/v2ray.logrotate
 /var/log/v2ray/*log {
-    create 0644 syslog adm
+    create 0640 syslog adm
     daily
     rotate 1
     missingok
