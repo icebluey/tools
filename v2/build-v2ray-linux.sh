@@ -93,14 +93,14 @@ cat << EOF > etc/v2ray/v2ray.logrotate
 /var/log/v2ray/*log {
     create 0644 syslog adm
     daily
-    rotate 1
+    rotate 7
     missingok
     notifempty
     compress
     sharedscripts
     postrotate
-        /usr/bin/killall -HUP rsyslogd 2> /dev/null || true
-        /usr/bin/killall -HUP syslogd 2> /dev/null || true
+        /usr/bin/killall -HUP rsyslogd 2>/dev/null || true
+        /usr/bin/killall -HUP syslogd 2>/dev/null || true
     endscript
 }
 EOF
@@ -121,8 +121,8 @@ cd "$(dirname "$0")"
 chmod 0777 /var/log/v2ray
 /usr/bin/install -v -c -m 0644 v2ray.service /lib/systemd/system/v2ray.service
 /bin/systemctl daemon-reload >/dev/null 2>&1 || : 
-/usr/bin/killall -HUP rsyslogd 2> /dev/null || true
-/usr/bin/killall -HUP syslogd 2> /dev/null || true
+/usr/bin/killall -HUP rsyslogd 2>/dev/null || true
+/usr/bin/killall -HUP syslogd 2>/dev/null || true
 ' > etc/v2ray/.install.txt
 sleep 1
 chmod 0644 etc/v2ray/.install.txt
