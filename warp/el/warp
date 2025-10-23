@@ -1,5 +1,5 @@
 /var/log/warp-svc/*log {
-    create 0644 cfwarp cfwarp
+    create 0640 cfwarp cfwarp
     daily
     rotate 1
     missingok
