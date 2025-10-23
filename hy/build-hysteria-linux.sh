@@ -90,8 +90,8 @@ cat << EOF > etc/hysteria/hysteria.logrotate
     compress
     sharedscripts
     postrotate
-        /usr/bin/killall -HUP rsyslogd 2> /dev/null || true
-        /usr/bin/killall -HUP syslogd 2> /dev/null || true
+        /usr/bin/killall -HUP rsyslogd 2>/dev/null || true
+        /usr/bin/killall -HUP syslogd 2>/dev/null || true
     endscript
 }
 EOF
