@@ -93,7 +93,7 @@ cat << EOF > etc/v2ray/v2ray.logrotate
 /var/log/v2ray/*log {
     create 0644 syslog adm
     daily
-    rotate 7
+    rotate 1
     missingok
     notifempty
     compress
