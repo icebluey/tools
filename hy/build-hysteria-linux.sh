@@ -110,8 +110,8 @@ cd "$(dirname "$0")"
 [ -f /etc/rsyslog.d/10-hysteria.conf ] || install -m 0644 hysteria.rsyslog /etc/rsyslog.d/10-hysteria.conf
 /usr/bin/install -v -c -m 0644 hysteria.service /lib/systemd/system/hysteria.service
 /bin/systemctl daemon-reload >/dev/null 2>&1 || true
-/usr/bin/killall -HUP rsyslogd 2> /dev/null || true
-/usr/bin/killall -HUP syslogd 2> /dev/null || true
+/usr/bin/killall -HUP rsyslogd 2>/dev/null || true
+/usr/bin/killall -HUP syslogd 2>/dev/null || true
 ' > etc/hysteria/.install.txt
 sleep 1
 chmod 0644 etc/hysteria/.install.txt
