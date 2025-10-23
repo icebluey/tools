@@ -82,7 +82,7 @@ chmod 0644 etc/hysteria/hysteria.service
 ###############################################################################
 cat << EOF > etc/hysteria/hysteria.logrotate
 /var/log/hysteria.log {
-    create 0644 syslog adm
+    create 0640 syslog adm
     daily
     rotate 1
     missingok
