@@ -3,15 +3,19 @@ set -e
 case "${1}" in
   2004|20.04)
     _distro="focal"
+    _dir="20.04"
     ;;
   2204|22.04)
     _distro="jammy"
+    _dir="22.04"
     ;;
   2404|24.04)
     _distro="noble"
+    _dir="24.04"
     ;;
   *)
     _distro="jammy"
+    _dir="22.04"
     ;;
 esac
 
@@ -26,6 +30,8 @@ cloudflare_warp_filepath=$(curl -s "https://pkg.cloudflareclient.com/dists/${_di
   | awk -F: '{print $2}' | sed 's|[ \t]*||g')
 
 echo "Downloading Cloudflare warp ${cloudflare_warp_ver}:"
+mkdir "${_dir}"
+cd "${_dir}"
 wget -c -t 9 -T 9 "https://pkg.cloudflareclient.com/${cloudflare_warp_filepath}"
 echo "Completed"
 exit
