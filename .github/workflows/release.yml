@@ -1,0 +1,42 @@
+name: build-hysteria-v2ray
+on:
+  #push:
+  #  branches: [ "master" ]
+  #pull_request:
+  #  branches: [ "master" ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install docker
+        run: |
+          sudo apt update -y -qqq
+          sudo apt autoremove --purge -y needrestart || true
+          sudo /bin/bash scripts/clean-os.sh
+          sudo apt install -y bash wget ca-certificates curl git openssl
+          sudo ln -svf bash /bin/sh
+          sudo /bin/rm -fr /tmp/*
+          sudo /bin/bash scripts/install-docker.sh
+
+      - name: Build hysteria and v2ray on container
+        run: sudo /bin/bash build-hy-v2.sh
+
+      - name: Generate release tag env
+        run: |
+          _release_ver="$(date -u +%Y-%m-%d-%H%M)"
+          echo "_release_ver=${_release_ver}" >> $GITHUB_ENV
+
+      - name: Upload files
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env._release_ver }}
+          files: |
+            /tmp/_output_assets/hysteria/*
+            /tmp/_output_assets/v2ray/*
+
+      - name: Delete old release tag env
+        run: |
+          sed -e "/^_release_ver=/d" -i $GITHUB_ENV
+          sudo rm -fr /tmp/_output_assets

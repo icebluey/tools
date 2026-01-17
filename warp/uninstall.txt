@@ -1,0 +1,25 @@
+
+systemctl disable warp-svc.service
+systemctl stop warp-svc.service
+sleep 1
+yum erase cloudflare-warp
+rm -fr /var/log/warp-svc
+rm -fr /var/log/cloudflare-warp
+rm -fr /var/lib/cloudflare-warp
+rm -f /lib/systemd/system/warp-svc.service
+rm -f /etc/systemd/system/warp-svc.service
+
+
+
+systemctl disable warp-svc.service
+systemctl stop warp-svc.service
+sleep 1
+apt purge cloudflare-warp
+rm -fr /var/log/warp-svc
+rm -fr /var/log/cloudflare-warp
+rm -fr /var/lib/cloudflare-warp
+rm -f /lib/systemd/system/warp-svc.service
+rm -f /etc/systemd/system/warp-svc.service
+
+
+

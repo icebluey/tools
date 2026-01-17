@@ -1,0 +1,21 @@
+ORPort 0
+ExitRelay 0
+TransPort 0
+DirPort 0
+UseBridges 0
+SocksPolicy accept 127.0.0.1
+SocksPolicy reject *
+GeoIPFile /usr/share/tor/geoip
+GeoIPv6File /usr/share/tor/geoip6
+Log notice syslog
+StrictNodes 1
+Sandbox 1
+AvoidDiskWrites 1
+ExcludeNodes {cn},{hk},{mo},{ru},{kp},{vn},{cu},{ir},{sy},{pk},{by}
+ExcludeExitNodes {cn},{hk},{mo},{ru},{kp},{vn},{cu},{ir},{sy},{pk},{by}
+NewCircuitPeriod 86400
+RunAsDaemon 0
+#Socks5Proxy 127.0.0.1:1080
+SocksPort 127.0.0.1:9060
+DataDirectory /etc/tor/jp
+ExitNodes {jp}
