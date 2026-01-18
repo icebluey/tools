@@ -23,7 +23,7 @@ _install_7z() {
     rm -fr "${_tmp_dir}"
 }
 
-_install_go () {
+_install_go() {
     set -e
     _tmp_dir="$(mktemp -d)"
     cd "${_tmp_dir}"
