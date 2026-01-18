@@ -3,7 +3,7 @@ export PATH=$PATH:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
 TZ='UTC'; export TZ
 umask 022
 /sbin/ldconfig
-_install_go () {
+_install_go() {
     set -e
     _tmp_dir="$(mktemp -d)"
     cd "${_tmp_dir}"
