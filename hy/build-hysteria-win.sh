@@ -72,7 +72,7 @@ python3 hyperbole.py build -r
 cp -f build/hysteria-windows-amd64-avx.exe /tmp/
 sleep 1
 cd /tmp
-7z -tzip a hysteria-windows-amd64-avx.exe.zip hysteria-windows-amd64-avx.exe
+/usr/bin/7z -tzip a hysteria-windows-amd64-avx.exe.zip hysteria-windows-amd64-avx.exe
 
 rm -fr /tmp/hysteria
 mkdir /tmp/hysteria
