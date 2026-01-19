@@ -20,7 +20,7 @@ jobs:
           sudo /bin/rm -fr /tmp/*
           sudo /bin/bash scripts/install-docker.sh
 
-      - name: Build hysteria and v2ray on container
+      - name: Build hysteria and v2ray in the container
         run: sudo /bin/bash build-hy-v2.sh
 
       - name: Generate release tag env
