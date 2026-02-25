@@ -199,7 +199,7 @@ tar -Jcvf /tmp/"hysteria-${_hysteria_version}-static.tar.xz" *
 echo
 sleep 2
 cd /tmp
-sha256sum "hysteria-${_hysteria_version}-static.tar.xz" > "hysteria-${_hysteria_version}-static.tar.xz".sha256
+sha256sum -b "hysteria-${_hysteria_version}-static.tar.xz" > "hysteria-${_hysteria_version}-static.tar.xz".sha256
 rm -fr /tmp/hysteria
 rm -fr "${_tmp_dir}"
 rm -fr /usr/local/go
