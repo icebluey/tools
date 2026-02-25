@@ -3,7 +3,7 @@ export PATH=$PATH:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
 TZ='UTC'; export TZ
 umask 022
 /sbin/ldconfig
-_install_go () {
+_install_go() {
     set -e
     _tmp_dir="$(mktemp -d)"
     cd "${_tmp_dir}"
@@ -35,7 +35,7 @@ alias gofmt="$GOROOT/bin/gofmt"
 rm -fr ~/.cache/go-build
 rm -fr ~/.config/go
 echo
-go version
+/usr/local/go/bin/go version
 echo
 _tmp_dir="$(mktemp -d)"
 cd "${_tmp_dir}"
@@ -63,7 +63,7 @@ install -m 0755 -d /tmp/v2ray/etc/v2ray
 install -m 0755 -d /tmp/v2ray/usr/bin
 
 cd main
-CGO_ENABLED=0 GOARCH=amd64 GOAMD64=v3 go build -trimpath -mod=mod -ldflags "-s -w" -o /tmp/v2ray/usr/bin/v2ray
+CGO_ENABLED=0 GOARCH=amd64 GOAMD64=v3 /usr/local/go/bin/go build -trimpath -mod=mod -ldflags "-s -w" -o /tmp/v2ray/usr/bin/v2ray
 
 cd /tmp/v2ray
 ###############################################################################
@@ -228,7 +228,7 @@ tar -Jcvf /tmp/"v2ray-${_version}-${_date}-static.tar.xz" *
 echo
 sleep 2
 cd /tmp
-sha256sum "v2ray-${_version}-${_date}-static.tar.xz" > "v2ray-${_version}-${_date}-static.tar.xz".sha256
+sha256sum -b "v2ray-${_version}-${_date}-static.tar.xz" > "v2ray-${_version}-${_date}-static.tar.xz".sha256
 
 rm -fr /tmp/v2ray
 install -m 0755 -d /tmp/v2ray
