@@ -123,6 +123,9 @@ apt autoremove --purge -y --allow-remove-essential $(dpkg -l | awk '$2 ~ /mysql|
 /bin/rm -fr /usr/local/.ghcup
 /bin/rm -fr /opt/hostedtoolcache
 
+rm -fr /usr/local/lib/android/
+rm -fr /usr/local/lib/node_modules/
+
 /bin/systemctl stop systemd-resolved.service
 /bin/systemctl stop systemd-timesyncd
 /bin/systemctl stop unattended-upgrades
